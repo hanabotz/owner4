@@ -257,7 +257,7 @@ const Bfake = fs.readFileSync ('./media/image/fake.jpeg','base64')
         	fromMe:false,
         participant:`0@s.whatsapp.net`, ...(from ? {
 remoteJid :"6289523258649-1604595598@g.us" }: {})
-                    },message:{"orderMessage":{"orderId":"174238614569481","thumbnail":fs.readFileSync(`image/odc.jpeg`),"itemCount":2021,"status":"INQUIRY","surface":"CATALOG","message":`STATUS PESANAN :DI PROSES\n${groupMetadata.subject}`,"token":"AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="}}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true})}
+                    },message:{"orderMessage":{"orderId":"174238614569481","thumbnail":fs.readFileSync(`media/odc.jpeg`),"itemCount":2021,"status":"INQUIRY","surface":"CATALOG","message":`STATUS PESANAN :DI PROSES\n${groupMetadata.subject}`,"token":"AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="}}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true})}
 
 const d1 = (teks) => {
             ikyy.sendMessage(from, teks, text, {
@@ -266,7 +266,7 @@ const d1 = (teks) => {
         	fromMe:false,
         participant:`0@s.whatsapp.net`, ...(from ? {
 remoteJid :"6289523258649-1604595598@g.us" }: {})
-                    },message:{"orderMessage":{"orderId":"174238614569481","thumbnail":fs.readFileSync(`image/odc.jpeg`),"itemCount":2021,"status":"INQUIRY","surface":"CATALOG","message":`STATUS PESANAN :DONE\n${groupMetadata.subject}`,"token":"AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="}}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true})}
+                    },message:{"orderMessage":{"orderId":"174238614569481","thumbnail":fs.readFileSync(`media/odc.jpeg`),"itemCount":2021,"status":"INQUIRY","surface":"CATALOG","message":`STATUS PESANAN :DONE\n${groupMetadata.subject}`,"token":"AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="}}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true})}
 
 const verif = (teks) => {
         ikyy.sendMessage(from, teks, text, {
@@ -279,7 +279,14 @@ remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "ht
 }
 
 let ikyads = await getBuffer (`https://telegra.ph/file/6776d58cca6fe933452bf.jpg`)
-        let d = new Date
+ let fakeLink = {
+             "title": `Hai Kak ${pushname}`,
+             "body": `${timuu}`,
+             "previewType": "VIDIO",
+             "thumbnail": fs.readFileSync(`media/Menu.jpg`),
+             "mediaUrl": "https://youtu.be/7BqlUxaWXKs"
+        } 
+       let d = new Date
        let locale = 'id'
        let gmt = new Date(0).getTime() - new Date('1 January 1970').getTime()
      let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
@@ -898,104 +905,403 @@ buttons: buttons,
 ikyy.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
                  
-                   case 'menu':
-        case 'help':
-              groups = ikyy.chats.array.filter(v => v.jid.endsWith('g.us'))
-              privat = ikyy.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net'))
-              ram2 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
-              charger = `${charging ? 'lagi dicas' : 'ga dicas'}`
-              uptime = process.uptime();
-              timestampe = speed();
-              totalChat = await ikyy.chats.all()
-              latensie = speed() - timestampe
-              total = math(`${groups.length}*${privat.length}`)
-              
-        menu =`*[ _${botName}_ ]*
-        
-${ucapanWaktu} Kak ${pushname}👋`
-        
-wibu = `
-┌❏ *INDONESIA TIME*
-${petik}│◦➛ WIB : ${timuu}
-│◦➛ WITA : ${wita}
-└❏ WIT : ${wit}${petik}
-                          
-┌❏ *TODAY*
-${petik}│◦➛${ucapanWaktu}
-│◦➛Jam : ${timuu}
-└❏ Tanggal : ${date}${petik}
+                   case 'menu':{    
+                   reply(`*MENAMPILKAN MENU...*`)         
+                   let totalchat = await ikyy.chats.all()
+                   let i = []
+                   let giid = []
+                   for (let mem of totalchat) {
+                   i.push(mem.jid)
+                   }
+                for (let id of i) {
+                    if (id && id.includes('g.us')) {
+                        giid.push(id)
+                    }
+                }
+                let timestampi = speed();
+                let latensii = speed() - timestampi
+                const { wa_version, mcc, mnc, os_version, device_manufacturer, device_model } = ikyy.user.phone
+                let anu = process.uptime()
+                            try {
+                var pic = await ikyy.getProfilePicture(`${sender.split('@')[0]}@c.us`)
+            } catch {
+                var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
+            }
+let img = fs.readFileSync('./media/Nakano.jpg')
+let menuhe = `
+Hai Kak👋 ${pushname}
 
-┌❏ *DEVICE*
-${petik}│◦➛Whatsapp : ${wa_version}
-│◦➛Merk HP : ${device_manufacturer}
-│◦➛Versi HP : ${device_model}
-│◦➛Versi OS : ${os_version}
-│◦➛RAM : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
-│◦➛MCC : ${mcc}
-└❏ MNC : ${mnc}${petik}
+❐──➨「 𝑰𝒏𝒇𝒐 𝒃𝒐𝒕 」
+𒍮Bot name : ${botName}
+𒍮Owner : ${ownerName}
 
-┌─❑「 *BOT INFO* 」
-${petik}│◦➛ Owner : ${ownerName}
-│◦➛Group Chats : ${groups.length}
-│◦➛𝐏𝐫𝐢𝐯𝐚𝐭𝐞 𝐂𝐡𝐚𝐭𝐬 : ${privat.length}
-│◦➛𝐁𝐚𝐭𝐞𝐫𝐚𝐢 : ${baterai}% ${charger}
-│◦➛𝐓𝐨𝐭𝐚𝐥 𝐂𝐡𝐚𝐭𝐬 : ${totalChat.length}
-│◦➛𝐀𝐜𝐭𝐢𝐯𝐞 : ${runtime(process.uptime())}
-│◦➛▢ 𝐏𝐥𝐚𝐭𝐟𝐨𝐫𝐦 : ${os.platform()}
-└❏ ${petik}
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}bc *teks*
+┃▹  ${prefix}term
+┃▹  ${prefix}self
+┃▹  ${prefix}public
+┃▹  ${prefix}eval
+┃▹  ${prefix}reset
+┃▹  ${prefix}clearall
+┃▹  ${prefix}leaveall
+┃▹  ${prefix}addvn
+┃▹  ${prefix}getvn
+┃▹  ${prefix}addimage
+┃▹  ${prefix}getimage
+┃▹  ${prefix}addvideo
+┃▹  ${prefix}getvideo
+┃▹  ${prefix}slow
+┃▹  ${prefix}leaveall
+┃▹  ${prefix}join *link gc*
+┃▹  ${prefix}shutdown
+┃▹  ${prefix}getquoted
+┃▹  ${prefix}addupdate *fiturnya*
+┃▹  ${prefix}exif *nama|author*
+┃▹  ${prefix}sewa add/del *waktunya*
+┃▹  ${prefix}premium add @tag|nomor
+┃▹  ${prefix}premium del @tag|nomor
+┗⬡
+┏━▹ MENU
+┃▹ chiisaihentai
+┃▹ trap
+┃▹ blowjob
+┃▹ yaoi
+┃▹ ecchi
+┃▹ hentai
+┃▹ ahegao
+┃▹ hololewd
+┃▹ sideoppai
+┃▹ animefeets
+┃▹ animebooty
+┃▹ animethighss
+┃▹ hentaiparadise
+┃▹ animearmpits
+┃▹ hentaifemdom
+┃▹ lewdanimegirls
+┃▹ biganimetiddies
+┃▹ animebellybutton
+┃▹ hentai4everyone
+┗━▹
+┏━▹ MENU
+┃▹ bj
+┃▹ ero
+┃▹ ppcp
+┃▹ cum
+┃▹ feet
+┃▹ yuri
+┃▹ trap
+┃▹ lewd
+┃▹ feed
+┃▹ eron
+┃▹ solo
+┃▹ gasm
+┃▹ poke
+┃▹ anal
+┃▹ holo
+┃▹ tits
+┃▹ kuni
+┃▹ kiss
+┃▹ erok
+┃▹ smug
+┃▹ baka
+┃▹ solog
+┃▹ feetg
+┃▹ lewdk
+┃▹ waifu
+┃▹ pussy
+┃▹ femdom
+┃▹ cuddle
+┃▹ hentai
+┃▹ eroyuri
+┃▹ cum_jpg
+┃▹ blowjob
+┃▹ erofeet
+┃▹ holoero
+┃▹ classic
+┃▹ erokemo
+┃▹ fox_girl
+┃▹ futanari
+┃▹ lewdkemo
+┃▹ wallpaper
+┃▹ pussy_jpg
+┃▹ kemonomimi
+┃▹ nsfw_avatar
+┃▹ ngif
+┃▹ nsfw_neko_gif
+┃▹ random_hentai_gif
+┗━▹
+┏━▹ MENU
+┃▹ shadow text
+┃▹ cup text
+┃▹ cup1 text
+┃▹ romance text
+┃▹ smoke text
+┃▹ burnpaper text
+┃▹ lovemessage text
+┃▹ undergrass text
+┃▹ love text
+┃▹ coffe text
+┃▹ woodheart text
+┃▹ woodenboard text
+┃▹ summer3d text
+┃▹ wolfmetal text
+┃▹ nature3d text
+┃▹ underwater text
+┃▹ golderrose text
+┃▹ summernature text
+┃▹ letterleaves text
+┃▹ glowingneon text
+┃▹ fallleaves text
+┃▹ flamming text
+┃▹ harrypotter text
+┃▹ carvedwood text
+┃▹ tiktok text1 text2
+┃▹ arcade8bit text1 text2
+┃▹ battlefield4 text1 text2
+┃▹ pubg text1 text2
+┗━▹
+┏━▹「 Ephoto 360 」
+┃▹ wetglass text
+┃▹ multicolor3d text
+┃▹ watercolor text
+┃▹ luxurygold text
+┃▹ galaxywallpaper text
+┃▹ lighttext text
+┃▹ beautifulflower text
+┃▹ puppycute text
+┃▹ royaltext text
+┃▹ heartshaped text
+┃▹ birthdaycake text
+┃▹ galaxystyle text
+┃▹ hologram3d text
+┃▹ greenneon text
+┃▹ glossychrome text
+┃▹ greenbush text
+┃▹ metallogo text
+┃▹ noeltext text
+┃▹ glittergold text
+┃▹ textcake text
+┃▹ starsnight text
+┃▹ wooden3d text
+┃▹ textbyname text
+┃▹ writegalacy text
+┃▹ galaxybat text
+┃▹ snow3d text
+┃▹ birthdayday text
+┃▹ goldplaybutton text
+┃▹ silverplaybutton text
+┃▹ freefire text
+┗━▹
+┏⬡  𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹ ${prefix}drakorongoing
+┃▹ ${prefix}lk21 query
+┃▹ ${prefix}wattpad url_wattpad
+┃▹ ${prefix}wattpadsearch query
+┃▹ ${prefix}cerpen
+┃▹ ${prefix}ceritahoror
+┗⬡
+┏⬡  𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹ ${prefix}quotes
+┃▹ ${prefix}quotesdiLan
+┃▹ ${prefix}quotesanime
+┃▹ ${prefix}quotesimage
+┃▹ ${prefix}faktaunik
+┃▹ ${prefix}katabijak
+┃▹ ${prefix}pantun
+┃▹ ${prefix}bucin
+┃▹ ${prefix}randomnama
+┗⬡
+┏⬡ ??𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}loli
+┃▹  ${prefix}manga
+┃▹  ${prefix}anime 
+┃▹  ${prefix}lolivideo
+┃▹  ${prefix}husbu
+┃▹  ${prefix}waifu
+┃▹  ${prefix}milf
+┃▹  ${prefix}neko
+┃▹  ${prefix}kanna
+┃▹  ${prefix}sagiri
+┃▹  ${prefix}hentai
+┃▹  ${prefix}cosplay
+┃▹  ${prefix}wallnime
+┃▹  ${prefix}kusonime
+┃▹  ${prefix}megumin
+┃▹  ${prefix}otakudesu
+┃▹  ${prefix}doujindesu
+┃▹  ${prefix}storyanime
+┃▹  ${prefix}nakanomiku
+┃▹  ${prefix}nakanoikyy
+┃▹  ${prefix}nakanoitsuki
+┃▹  ${prefix}otakuongoing
+┃▹  ${prefix}nhentai *code*
+┃▹  ${prefix}nekopoi *link*
+┃▹  ${prefix}nekopoi3d
+┃▹  ${prefix}nekopoicosplay
+┃▹  ${prefix}nekopoisearch
+┗⬡
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}fb 
+┃▹  ${prefix}igdl 
+┃▹  ${prefix}igdl2 
+┃▹  ${prefix}twitter 
+┃▹  ${prefix}tiktok 
+┃▹  ${prefix}play 
+┃▹  ${prefix}ythd 
+┃▹  ${prefix}ytmp3 
+┃▹  ${prefix}ytmp4 
+┃▹  ${prefix}soundcloud 
+┃▹  ${prefix}tiktoknowm 
+┃▹  ${prefix}tiktokaudio
+┃▹  ${prefix}mediafire 
+┃▹  ${prefix}nhentaipdf *code*
+┗⬡
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}brainly *query*
+┃▹  ${prefix}shopee *product*
+┃▹  ${prefix}playstore *query*
+┃▹  ${prefix}ssweb *query*
+┃▹  ${prefix}google *query*
+┃▹  ${prefix}image *query*
+┃▹  ${prefix}pinterest *query*
+┃▹  ${prefix}nulis *teks*
+┃▹  ${prefix}iguser *ussername*
+┃▹  ${prefix}igstalk *username*
+┃▹  ${prefix}githubstalk *username*
+┃▹  ${prefix}tiktokstalk *ussername*
+┃▹  ${prefix}img2url *reply foto*
+┃▹  ${prefix}ytsearch *query*
+┗⬡
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}slot
+┃▹  ${prefix}limitgame
+┃▹  ${prefix}gelud @tag
+┃▹  ${prefix}tictactoe @tag
+┃▹  ${prefix}siapaaku
+┃▹  ${prefix}family100
+┃▹  ${prefix}kuismath
+┃▹  ${prefix}asahotak
+┃▹  ${prefix}tebaklirik
+┃▹  ${prefix}tebaklagu
+┃▹  ${prefix}tebakkata
+┃▹  ${prefix}susunkata
+┃▹  ${prefix}kimiakuis
+┃▹  ${prefix}caklontong
+┃▹  ${prefix}tebakjenaka
+┃▹  ${prefix}tebakanime
+┃▹  ${prefix}tebaktebakan
+┃▹  ${prefix}tebakgambar
+┃▹  ${prefix}tebakbendera
+┃▹  ${prefix}suit *batu/kertas/gunting*
+┗⬡
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}dadu
+┃▹  ${prefix}bucinstick
+┃▹  ${prefix}doge
+┃▹  ${prefix}toimg
+┃▹  ${prefix}patrick
+┃▹  ${prefix}attp *teks*
+┃▹  ${prefix}stickeranime
+┃▹  ${prefix}semoji *emoji*
+┃▹  ${prefix}sticker *reply foto/video*
+┃▹  ${prefix}smeme *teks|teks*
+┃▹  ${prefix}swm *pack|author*
+┃▹  ${prefix}take *pack|author* 
+┃▹  ${prefix}tovideo *reply sgif*
+┗⬡
+┏⬡ 𝐋𝐈𝐒?? 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}mining
+┃▹  ${prefix}togel
+┃▹  ${prefix}cekwatak
+┃▹  ${prefix}cekmati [nama]
+┃▹  ${prefix}wangy [nama]
+┃▹  ${prefix}citacita
+┃▹  ${prefix}toxic
+┃▹  ${prefix}truth
+┃▹  ${prefix}dare
+┃▹  ${prefix}apakah
+┃▹  ${prefix}bisakah
+┃▹  ${prefix}kapankah
+┃▹  ${prefix}rate
+┃▹  ${prefix}jadian
+┃▹  ${prefix}cantik
+┃▹  ${prefix}ganteng
+┃▹  ${prefix}beban
+┃▹  ${prefix}babi
+┃▹  ${prefix}cekganteng
+┃▹  ${prefix}cekcantik
+┗⬡
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}update
+┃▹  ${prefix}level
+┃▹  ${prefix}rules
+┃▹  ${prefix}profile
+┃▹  ${prefix}waktu
+┃▹  ${prefix}botstat
+┃▹  ${prefix}sewabot
+┃▹  ${prefix}listsewa
+┃▹  ${prefix}owner
+┃▹  ${prefix}ping
+┃▹  ${prefix}runtime
+┃▹  ${prefix}donasi
+┃▹  ${prefix}leaderboard
+┃▹  ${prefix}cekpremium
+┃▹  ${prefix}listpremium
+┃▹  ${prefix}sourcecode
+┃▹  ${prefix}bugreport *keluha
+┏⬡ 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
+┃▹  ${prefix}listsurah
+┃▹  ${prefix}alquran
+┃▹  ${prefix}alquranaudio
+┃▹  ${prefix}asmaulhusna
+┃▹  ${prefix}kisahnabi
+┃▹  ${prefix}jadwalsholat
+┗⬡
+╠═══✪〘 Sound Menu〙✪══
+╠➥${prefix}sound1
+╠➥${prefix}sound2
+╠➥${prefix}sound3
+╠➥${prefix}sound4
+╠➥${prefix}sound5
+╠➥${prefix}sound6
+╠➥${prefix}sound7
+╠➥${prefix}sound8
+╠➥${prefix}sound9
+╠➥${prefix}sound10
+╠➥${prefix}sound11
+╠➥${prefix}sound12
+╠➥${prefix}sound13
+╠➥${prefix}sound14
+╠➥${prefix}sound15
+╠➥${prefix}sound16
+╠➥${prefix}sound17
+╠➥${prefix}sound18
+╠➥${prefix}sound19
+╠➥${prefix}sound20
+╠➥${prefix}sound21
+╠➥${prefix}sound22
+╠➥${prefix}sound23`
+let prep = await ikyy.prepareMessage('0@c.us', img, image, { thumbnail: await getBuffer(pic)}) 
+let imgMsg = prep.message.imageMessage
+res = await ikyy.prepareMessageFromContent(from,{
+"productMessage": {
+"product": {
+"productImage": imgMsg,
+"productId": "0",
+"title": `LIST MENU ${botName}`,
+"description": menuhe,
+"footerText": `${botName}`,
+"currencyCode": "IDR",
+"priceAmount1000": "0",
+"productImageCount": 1
+},
+"businessOwnerJid": `${ownerNumber}`,
+}
+}, {quoted: freply, mimetype: 'media/odc.jpeg', contextInfo:{externalAdReply: fakeLink }}) 
 
-
- 𝐋𝐈𝐒𝐓 𝐌𝐄𝐍𝐔
-
-┏━▹ 𝐠𝐫𝐨𝐮𝐩𝐦𝐞𝐧𝐮
-┃
-┗━▹ 𝐰𝐢𝐛𝐮𝐦𝐞𝐧𝐮
-
-┏━▹ 𝐬𝐭𝐢𝐜𝐤𝐞𝐫𝐦𝐞𝐧𝐮
-┃
-┗━▹ 𝐨𝐰𝐧𝐞𝐫𝐦𝐞𝐧𝐮
-
-┏━▹ 𝐠𝐚𝐦𝐞𝐦𝐞𝐧𝐮
-┃
-┗━▹ 𝐟𝐮𝐧𝐦𝐞𝐧𝐮
-
-┏━▹ 𝐝𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐦𝐞𝐧𝐮
-┃
-┗━▹ 𝐢𝐧𝐟𝐨𝐦𝐞𝐧𝐮
-
-┏━▹ 𝐨𝐭𝐡𝐞𝐫𝐦𝐞𝐧𝐮
-┃
-┗━▹ 𝐬𝐞𝐰𝐚𝐛𝐨𝐭
-
-┏━▹ *soundmenu*
-┃
-┗━▹ 𝐢𝐬𝐥𝐚𝐦𝐦𝐞𝐧𝐮
-
-┏━▹ 𝐫𝐚𝐧𝐝𝐨𝐦𝐭𝐞𝐱𝐭
-┃
-┗━▹ 𝐦𝐨𝐯𝐢𝐞𝐦𝐞𝐧𝐮
-
-┏━▹ 𝐫𝐚𝐧𝐝𝐨𝐦𝐢𝐦𝐚𝐠𝐞
-┃
-┗━▹ 𝐞𝐩𝐡𝐨𝐭𝐨
-
-┏━▹ 𝐩𝐡𝐨𝐭𝐨𝐤𝐲
-┃
-┗━▹ 𝐭𝐞𝐱𝐭𝐩𝐫𝐨
-
-┏━▹ 𝐈𝐦𝐚𝐠𝐞𝐦𝐚𝐧𝐢
-┃
-┗━▹ 𝐍𝐬𝐟𝐰𝐚𝐧𝐢𝐦𝐞
-
-
-
-
-© ›› ${ownerName}
-`
-                
-
-                    ikyy.sendMessage(from, { contentText: `${menu}`, footerText: `${wibu}`, buttons: [{ buttonId: `.command`, buttonText: { displayText: 'LIST MENU' }, type: 1 },{ buttonId: `.sewabot`, buttonText: { displayText: '🏷️ SEWA BOT' }, type: 1 },{ buttonId: `.owner`, buttonText: { displayText: '👥 OWNER' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: ikyads, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
-              break
+ikyy.relayWAMessage(res)
+}
+break
                
                    // Random Text //
                 case 'quotes':
@@ -2861,7 +3167,7 @@ Ket : Ketik /resetgame , Untuk Mereset Permainan Yg Ada Di Grup!`, text, {contex
       gopeynya = 'https://telegra.ph/file/6776d58cca6fe933452bf.jpg'
      teksnya = `1. Mingguan : 5.000
 2. Bulanan : 7.000
-2. Permanen : 10.000
+3. Permanen : 10.000
 Free bot respon menu store + bot respon name and date`
 
               ikyy.sendMessage(from, await getBuffer(gopeynya), image, {quoted: mek, caption: teksnya })
@@ -5766,8 +6072,16 @@ break
              break
 //------------------< Menunya Bang:v >-------------------
       case 'don':
-             reply(`minta own`)
-             break
+      gopeynya = 'https://telegra.ph/file/6776d58cca6fe933452bf.jpg'
+     teksnya = `GOPAY : SCAN
+
+DANA : 085271081629 an ISTIKOMAH
+
+QRIS : MINTA ADMIN`
+
+              ikyy.sendMessage(from, await getBuffer(gopeynya), image, {quoted: mek, caption: teksnya })
+              break
+             
       case 'infoig':
              reply(`• Grub 1 : https://chat.whatsapp.com/BXAaVUjbMIiEO6zYJq0FxB
 • Grub 2 : https://chat.whatsapp.com/LrqE4Zp8CV6Cr64MdxaxTg
@@ -5817,10 +6131,7 @@ if (budy.includes("Numa")){
 
         }
        
-if (budy.includes("#menu")){
-verif (`SABAR! LOADING UNTUK MENAMPILKAN MENU`)
-		}
-        
+
 
 if (fs.existsSync(`./media/${from}.json`)) {
 	gelutSkuy = setGelud(`${from}`)
