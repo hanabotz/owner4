@@ -5,12 +5,8 @@ const fs = require("fs-extra")
 
 const { getBuffer } = require('../lib/myfunc')
 const { color, bgcolor } = require('../lib/color')
-join = '\`\`\`New Member\`\`\` \n \`\`\`Nama :\`\`\` \n \`\`\`Askot : \`\`\` \n \`\`\`Umur :\`\`\` \n \`\`\`Status :\`\`\` \n\n - [   ] -'
-leave = '\`\`\`Sayonaraa\`\`\`'
 
-teks = `${join}`
 let setting = JSON.parse(fs.readFileSync('./setting.json'))
-
 module.exports = welcome = async (ikyy, anu) => {
 	    const welkom = JSON.parse(fs.readFileSync('./database/group/welcome.json'))
 	    const isWelcome = welkom.includes(anu.jid)
@@ -34,112 +30,25 @@ module.exports = welcome = async (ikyy, anu) => {
              if (anu.action == 'add' && !mem.includes(ikyy.user.jid)) {
              if (!welkom.includes(anu.jid)) return
                 mdata = await ikyy.groupMetadata(anu.jid)
-           
                 memeg = mdata.participants.length
             	num = anu.participants[0]
-                let v = ikyy.contacts[num] || { notify: num.replace(/@.+/, '') }
+              let v = ikyy.contacts[num] || { notify: num.replace(/@.+/, '') }
                 anu_user = v.vname || v.notify || num.split('@')[0]
-            buff = await getBuffer(`https://api.lolhuman.xyz/api/base/welcome?apikey=${setting.lolkey}&img1=${pp_user}&img2=${pp_grup}&background=https://telegra.ph/file/559d40a73f54e257b0b2e.jpg&username=${encodeURI(anu_user)}&member=${memeg}&groupname= ${encodeURI(mdata.subject)}`)
-        buttons = [
-
-          { buttonId: `!selamatdatang`, buttonText: { displayText: "Welcome👋" }, type: 1 },
-
-        ];
-
-        imageMsg = (
-
-          await ikyy.prepareMessageMedia(buff, "imageMessage", {
-
-            thumbnail: buff,
-
-          })
-
-        ).imageMessage;
-
-        buttonsMessage = {
-
-          contentText: `${teks}`,
-
-          footerText: "Botz~",
-
-          imageMessage: imageMsg,
-
-          buttons: buttons,
-
-          headerType: 4,
-
-        };
-
-        prep = await ikyy.prepareMessageFromContent(
-
-          mdata.id,
-
-          { buttonsMessage },
-
-          {}
-
-        );
-
-        ikyy.relayWAMessage(prep);
-
-      }
-
-      if (anu.action == "remove" && !mem.includes(ikyy.user.jid)) {
-
-        mdata = await ikyy.groupMetadata(anu.jid);
-
-        num = anu.participants[0];
-
-        let w = ikyy.contacts[num] || { notify: num.replace(/@.+/, "") };
-
-        anu_user = w.vname || w.notify || num.split("@")[0];
-
-        memeg = mdata.participants.length;
-
-        out = `${leave}`;
-
-        buff = await getBuffer(`https://api.lolhuman.xyz/api/base/welcome?apikey=${setting.lolkey}&img1=${pp_user}&img2=${pp_grup}&background=https://telegra.ph/file/559d40a73f54e257b0b2e.jpg&username=${encodeURI(anu_user)}&member=${memeg}&groupname= ${encodeURI(mdata.subject)}`)
-            
-        buttons = [
-
-          { buttonId: `!bay`, buttonText: { displayText: "Sayonara👋" }, type: 1 },];
-
-        imageMsg = (
-
-          await ikyy.prepareMessageMedia(buff, "imageMessage", {
-
-            thumbnail: buff,
-
-          })
-
-        ).imageMessage;
-
-        buttonsMessage = {
-
-          contentText: `${out}`,
-
-          footerText: "Botz~",
-
-          imageMessage: imageMsg,
-
-          buttons: buttons,
-
-          headerType: 4,
-
-        };
-
-        prep = await ikyy.prepareMessageFromContent(
-
-          mdata.id,
-
-          { buttonsMessage },
-
-          {}
-
-        );
-
-        ikyy.relayWAMessage(prep);
-        }
+                teks = `halo @${num.split('@')[0]}\nselamat datang di group ${mdata.subject}`
+	            buff = await getBuffer(pp_user)
+		        ikyy.sendMessage(mdata.id, { contentText: `${teks}`, footerText: `subs yt RIFQI BOTZ`, buttons: [{buttonId: `!lll`,buttonText:{displayText: 'Welcome'},type:1}],headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: buff, contextInfo: {"mentionedJid": [num]}}}, 'buttonsMessage')
+		}
+            if (anu.action == 'remove' && !mem.includes(ikyy.user.jid)) {
+            if (!welkom.includes(anu.jid)) return
+                mdata = await ikyy.groupMetadata(anu.jid)
+            	num = anu.participants[0]
+             let w = ikyy.contacts[num] || { notify: num.replace(/@.+/, '') }
+                anu_user = w.vname || w.notify || num.split('@')[0]
+                memeg = mdata.participants.length
+                out = `goodbye @${num.split('@')[0]}`
+                buff = await getBuffer(pp_user)
+                ikyy.sendMessage(mdata.id, { contentText: `${out}`, footerText: `subs yt RIFQI BOTZ`, buttons: [{buttonId: `!ll`,buttonText:{displayText: 'Goodbye'},type:1}],headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: buff, contextInfo: {"mentionedJid": [num]}}}, 'buttonsMessage')
+            }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		}
