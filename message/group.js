@@ -36,7 +36,7 @@ module.exports = welcome = async (ikyy, anu) => {
                 anu_user = v.vname || v.notify || num.split('@')[0]
                 teks = `halo @${num.split('@')[0]}\nselamat datang di group ${mdata.subject}`
 	            buff = await getBuffer(pp_user)
-		        ikyy.sendMessage(mdata.id, { contentText: `${teks}`, footerText: `subs yt RIFQI BOTZ`, buttons: [{buttonId: `!lll`,buttonText:{displayText: 'Welcome'},type:1}],headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: buff, contextInfo: {"mentionedJid": [num]}}}, 'buttonsMessage')
+		        ikyy.sendMessage(mdata.id, { contentText: `${teks}`, footerText: `bot by ${ownerName}`, buttons: [{buttonId: `!lll`,buttonText:{displayText: 'Welcome'},type:1}],headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: buff, contextInfo: {"mentionedJid": [num]}}}, 'buttonsMessage')
 		}
             if (anu.action == 'remove' && !mem.includes(ikyy.user.jid)) {
             if (!welkom.includes(anu.jid)) return
@@ -47,7 +47,7 @@ module.exports = welcome = async (ikyy, anu) => {
                 memeg = mdata.participants.length
                 out = `goodbye @${num.split('@')[0]}`
                 buff = await getBuffer(pp_user)
-                ikyy.sendMessage(mdata.id, { contentText: `${out}`, footerText: `subs yt RIFQI BOTZ`, buttons: [{buttonId: `!ll`,buttonText:{displayText: 'Goodbye'},type:1}],headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: buff, contextInfo: {"mentionedJid": [num]}}}, 'buttonsMessage')
+                ikyy.sendMessage(mdata.id, { contentText: `${out}`, footerText: `bot by ${ownerName}`, buttons: [{buttonId: `!ll`,buttonText:{displayText: 'Goodbye'},type:1}],headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: buff, contextInfo: {"mentionedJid": [num]}}}, 'buttonsMessage')
             }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
